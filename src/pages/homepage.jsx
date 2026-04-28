@@ -1,23 +1,61 @@
+import { useNavigate } from "react-router-dom";
+
 import { useState } from "react";
 import "../styles/homepage.css"
 import Header from "../assets/components/header.jsx";
 import Sidebar from "../assets/components/sidebar.jsx";
-import FilePicker from "../assets/components/filepicker.jsx";
 
-function Homepage() {
+import egg from "../assets/components/egg.svg";
+import learn from "../assets/components/learn.svg";
+
+import File from "../assets/components/file.jsx";
+import Spelling from "../pages/spelling.jsx";
+
+function Homepage ({ setPage }) {
   const [isSidebarOpen,setIsSidebarOpen] = useState(false);
+  const navigate = useNavigate();
 
   return (
+
     <div className="homepage-container">
           <Header toggleSidebar={() => setIsSidebarOpen(true)} />
             <Sidebar 
             isOpen={isSidebarOpen}
             closeSidebar={() => setIsSidebarOpen(false)} />
-          <h1>Upload File here!</h1>
-          <FilePicker />
+
+  <div className= " home-cont">
+    <h1 className= "heelo">Hello!</h1>
+
+  <div className="btnss">
+          <button
+            className="btn1"
+            type="button"
+          onClick={() => navigate("/file")}>
+            Similarity Detection</button>
+      
+         <button
+            className="btn2"
+            type="button"
+           onClick={() => navigate("/spelling")}>Spelling Checker </button>
+
+        <button
+            className="btn3"
+            type="button"
+        onClick={() => navigate("/grammar")}>Grammar Checker </button>
+          
+          <button className="btn4"
+            type="button"
+           onClick={() => navigate("/result")}>
+            result</button>
+   
+    </div>
+        <img className="egg2" src={egg} alt="Egg" />
+        <img className="learn" src={learn} alt="nerd" />   
+
+  </div>
     </div>
   );
 }
 
 
-export default Homepage;
+export default Homepage; 

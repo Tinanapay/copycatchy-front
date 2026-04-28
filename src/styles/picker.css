@@ -23,10 +23,5 @@
   background-color: #86c5ff;
   cursor: pointer;
 }
-.submit-btn, .cancel-btn{
 
-   width: 100%;
-  padding: 10px;
-  color: #000000;
-  background-color: #73bcd7; 
-}
+

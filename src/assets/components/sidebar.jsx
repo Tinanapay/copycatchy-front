@@ -1,30 +1,43 @@
+import { useNavigate } from "react-router-dom";
 import "../../styles/sidebar.css";
+import File from "../../assets/components/file.jsx";
 
 function Sidebar({ isOpen, closeSidebar }) {
+  const navigate = useNavigate();
+
   return (
-   
-   <div className={`sidebar ${isOpen ? "open" : "" }`}>
-       
-        <div className="sidebar-header">
+    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+      
+      <div className="sidebar-header">
         <button className="closed-btn" onClick={closeSidebar}>
-          Close meow
+          ⇐
         </button>
       </div>
 
-    <div className="sidebar-nav">
-            <ul>
-      <li><button className="home-btn">Home</button></li>
-      <li><button className="files-btn">Files</button></li>
-      <li><button className="reports-btn">Reports</button></li>
-            </ul>
+      <div className="sidebar-nav">
+        <button className="file-btn" onClick={() => navigate("/File")}>
+          Similarity Detection
+        </button>
+
+        <button className="spel-btn" onClick={() => navigate("/spelling")}>
+          Spelling Checker
+        </button>
+
+        <button className="gram-btn" onClick={() => navigate("/grammar")}>
+          Grammar Checker
+        </button>
+
+        <button className="rep-btn" onClick={() => navigate("/reports")}>
+          Report
+        </button>
       </div>
 
       <div className="logout-sidebar">
-        <button className="logout-btn"type="button">Logout</button>
+        <button className="logout-btn">Logout</button>
       </div>
-
 
     </div>
   );
 }
+
 export default Sidebar;

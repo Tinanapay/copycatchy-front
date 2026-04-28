@@ -1,10 +1,10 @@
-import { StrictMode } from "react";
-import { createRoot } from "react-dom/client";
-import "./styles/login.css";
-import App from "./app.jsx";
+import React from "react";
+import ReactDOM from "react-dom/client";
+import App from "./App.jsx";
+import { BrowserRouter } from "react-router-dom";
 
-createRoot(document.getElementById("root")).render( //the skeleton im the head
-   <StrictMode> 
+ReactDOM.createRoot(document.getElementById("root")).render(
+  <BrowserRouter>
     <App />
-  </StrictMode>
+  </BrowserRouter>
 );

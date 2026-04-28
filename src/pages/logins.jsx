@@ -1,21 +1,35 @@
+import { useNavigate } from "react-router-dom";
 import "../styles/login.css";
+import egg from "../assets/components/egg.svg";
+import learn from "../assets/components/learn.svg";
 
-function Logins({ onLogin }) {
+function Logins() {
+  const navigate = useNavigate();
+
   return (
     <div className="login-container">
-      <h1>Hello there!</h1>
-
       <form
         onSubmit={(e) => {
           e.preventDefault();
-          onLogin();
+          navigate("/home");
         }}
       >
-        <input type="text" placeholder="Username" />
-        <input type="password" placeholder="Password" />
-        <button className="login-btn" type="submit">
-          Login
-        </button>
+        <div className="hugs">
+          <h1 className="helo">Welcome!</h1>
+
+          <input type="text" placeholder="Username" />
+          <input type="password" placeholder="Password" />
+
+          <button className="login-btn" type="submit">
+            LOGIN
+          </button>
+
+          <p className="version">CopyCatch v1.</p>
+        </div>
+
+        <img className="egg1" src={egg} alt="Egg" />
+        <img className="egg2" src={egg} alt="Egg" />
+        <img className="learn" src={learn} alt="nerd" />
       </form>
     </div>
   );
