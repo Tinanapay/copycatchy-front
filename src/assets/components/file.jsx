@@ -90,7 +90,7 @@ return (
         <button className="cancel-btn" onClick={handleCancel}>
           Cancel
         </button>
-      </div>
+      </div> 
 
       <img className="egg1" src={egg} alt="Egg" />
       <img className="books" src={book2} alt="books" />

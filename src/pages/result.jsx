@@ -25,7 +25,6 @@ function Result() {
 
   return (
 
-    
     <div className="file-container">
 
   <Header toggleSidebar={() => setIsSidebarOpen(true)} />
@@ -33,7 +32,6 @@ function Result() {
             isOpen={isSidebarOpen}
             closeSidebar={() => setIsSidebarOpen(false)} />
 
-      <h2 className="title">Comparison Results</h2>
 
       <div className="result-table">
         <div className="table-header">
