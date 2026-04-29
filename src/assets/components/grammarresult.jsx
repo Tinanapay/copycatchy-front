@@ -1,6 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import "../../styles/grammar.css";
 
+import egg from "./egg.svg";
+
 import Header from "./header.jsx";
 import Sidebar from "./sidebar.jsx";
 import { useState } from "react";
@@ -25,7 +27,10 @@ function GrammarResult() {
 
   return (
 
-  <div className="file-container">
+  
+
+  <div className="file-container2">
+
 
     <Header toggleSidebar={() => setIsSidebarOpen(true)} />
     <Sidebar
@@ -33,27 +38,33 @@ function GrammarResult() {
       closeSidebar={() => setIsSidebarOpen(false)}
     />
 
-    <div className="result-layout">
+    <div className="result-layout2">
 
-        <div className="table-wrapper">
+        <div className="table-wrapper2">
 
-  <div className="result-table">
+  <div className="result-table2">
 
     {/* left side HEADER */}
-    <div className="table-header">
+    <div className="table-header2">
       <span>File Name</span>
-      <span>Mispelled Words</span>
+      <span>Grammatical Mistake</span>
       <span>Total Words</span>
-      <span>Spelling Score</span>
+      <span>Grammar Score</span>
     </div>
 
-    {/* ROWS */}
+     {/* ROWS */}
     {resultData.files.map((file, index) => (
-      <div className="table-row" key={index}>
+      <div className="table-row1" key={index}>
         <span>{file.name}</span>
-        <span>{file.similarity > 70 ? "High Risk" : "Safe"}</span>
-        <span>{file.mostSimilar}</span>
-        <span>{file.similarity}%</span>
+
+        {/* for test gram micount */}
+        <span>{Math.floor(Math.random() * 20) + 1}</span>
+
+        {/* fake total words */}
+        <span>{Math.floor(Math.random() * 500) + 200}</span>
+
+        {/* fake gram score */}
+        <span>{Math.floor(Math.random() * 30) + 70}%</span>
       </div>
     ))}
 
@@ -61,16 +72,20 @@ function GrammarResult() {
 </div>
 
       {/* RIGHT SIDE = DETAILS / MISTAKES */}
-      <div className="mistake-panel">
-        <h2>Spelling Mistakes</h2>
+      <div className="mistake-panel2">
+        <div className="nekobox1">
+       <h2 >Grammatical Mistakes</h2>
+       <button className= "dl-but"> download</button>
+       </div>
 
         {/* this will come from another file later */}
-        <div className="mistake-box">
+        <div className="mistake-box2">
           Select a file to view mistakes
         </div>
       </div>
 
     </div>
+     <img className="egg2" src={egg} alt="Egg" />
   </div>
 );
 }
