@@ -9,6 +9,22 @@
   align-items: stretch;
 }
 
+.dl-but{
+  position: absolute;
+  bottom: 50px;
+  left: 51%;
+
+  background: rgb(251, 222, 0);
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.dl-but:hover{
+
+  background: rgb(251, 109, 0);
+}
 
 .table-wrapper1 {
   flex: 6; /* bigger side */
@@ -32,7 +48,6 @@
 
   padding: 0;
 }
-
 
 /* TABLE */
 
@@ -61,7 +76,7 @@
 /* TABLE cCOLS */
 .table-row1 span {
   border-right: 2px solid rgba(0,0,0,0.1);
-
+  border-bottom: 1px solid #000000;
    min-width: 0;
   overflow: hidden;
   white-space: nowrap;
@@ -78,7 +93,6 @@
 }
 
 
-
 /* TABLE ROWS */
 
 .table-row1 {
@@ -93,7 +107,7 @@
    transition: 0.2s ease;
    overflow: hidden;
      min-width: 0;
-
+}
 .table-row1:nth-child(even) {
    background: #ffefa0;
 }
@@ -106,8 +120,7 @@
   border-bottom: none;
 }
 
-
-/* NEKO HEADER  */
+/* NEKOis the HEADER for mistake */
 
 .nekobox1 {
   position: sticky;
@@ -127,14 +140,7 @@
   border-radius: 10px 10px 0 0;
 
 }
-.dl-but{
-  background: rgb(244, 236, 176);
-  border-radius: 20px;
-  padding: 6px 12px;
-  border: none;
-  cursor: pointer;
-  border: 1px solid rgb(69, 67, 45);
-}
+
 
 /* MISTAKE CONTENT */
 
@@ -160,7 +166,21 @@
 
   width: 50%; 
   height: 50%; 
-z-index: -1; 
+  z-index: -1; 
 
   transform: rotate(180deg);
+}
+
+.compare-btn1,
+.cancel-btn1 {
+  width: 100%;
+  padding: 12px;
+
+  color: #000;
+  font-size: 15px;
+  cursor: pointer;
+
+  border: none;
+  border-radius: 10px;
+  z-index: 1px;
 }

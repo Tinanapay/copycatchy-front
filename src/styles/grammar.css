@@ -9,8 +9,22 @@
   align-items: stretch;
 }
 
+.dl-but{
+  position: absolute;
+  bottom: 50px;
+  left: 51%;
 
+  background: rgb(251, 222, 0);
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+}
 
+.dl-but:hover{
+
+  background: rgb(251, 222, 0);
+}
 
 .table-wrapper2 {
   flex: 6; /* bigger side */
@@ -86,11 +100,9 @@
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr;
   padding: 14px;
+    border-bottom: 1px solid #000000;
   
-  
-
   background: rgb(255, 255, 255);
-  border-bottom: 1px solid #eee;
 
    transition: 0.2s ease;
    overflow: hidden;
@@ -110,8 +122,6 @@
 }
 
 
-
-
 /* NEKO HEADER */
 
 .nekobox {
@@ -123,6 +133,8 @@
   font-weight: bold;
   text-align: center;
 
+display: flex;
+ justify-content: space-between;
   padding: 14px;
   margin: 0;
 
@@ -147,13 +159,6 @@
   margin: 0;
 
   border-radius: 10px 10px 0 0;
-}
-.dl-but{
-  background: rgb(244, 236, 176);
-  border-radius: 20px;
-  padding: 6px 12px;
-  border: none;
-  cursor: pointer;
 }
 
 .mistake-box2 {

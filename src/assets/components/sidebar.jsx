@@ -1,6 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import "../../styles/sidebar.css";
-import File from "../../assets/components/file.jsx";
+import File from "./file.jsx";
 
 function Sidebar({ isOpen, closeSidebar }) {
   const navigate = useNavigate();

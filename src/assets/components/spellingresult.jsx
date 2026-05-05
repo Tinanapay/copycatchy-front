@@ -28,23 +28,19 @@ function SpellingResult() {
 
   return (
 
-  
-
   <div className="file-container1">
-
 
     <Header toggleSidebar={() => setIsSidebarOpen(true)} />
     <Sidebar
       isOpen={isSidebarOpen}
-      closeSidebar={() => setIsSidebarOpen(false)}
-    />
+      closeSidebar={() => setIsSidebarOpen(false)}/>
 
     <div className="result-layout1">
+     <div className="table-wrapper1">
+      <div className="result-table1">
 
-        <div className="table-wrapper1">
-
-  <div className="result-table1">
-
+ <button className= "dl-but"> download</button>
+ 
     {/* left side HEADER */}
     <div className="table-header1">
       <span>File Name</span>
@@ -77,7 +73,7 @@ function SpellingResult() {
   
         <div className="nekobox1">
        <h2 >Spelling Mistakes</h2>
-       <button className= "dl-but"> download</button>
+
        </div>
 
         {/* this will come from another file later */}

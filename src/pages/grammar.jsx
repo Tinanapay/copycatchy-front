@@ -7,7 +7,7 @@ import Sidebar from "../assets/components/sidebar.jsx";
 
 import { handleDrop, handleDragOver, handleFileChange } from "../assets/components/dragdrop"; 
 import egg from "../assets/components/egg.svg";
-import book2 from "../assets/components/book2.png";
+import book2 from "../assets/components/book2.svg";
 
 function Grammar() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -41,9 +41,11 @@ function Grammar() {
 
       <div className="file-container">
         <div className="upload-box">
-          <h1 className="meow">Grammar checker</h1>
-          <h2 className="title">Upload Student Submissions</h2>
+          <h1 className="Title">Grammar checker</h1>
 
+
+          {/* dropping shows if no files yet */}
+        {files.length === 0 && (
           <div
             className="drop-area"
             onDrop={(e) => handleDrop(e, setFiles)}
@@ -58,17 +60,19 @@ function Grammar() {
               className="file-input"
             />
           </div>
+        )}
 
-          {files.length > 0 && (
-            <div className="file-list">
-              {files.map((file, index) => (
-                <div className="file-item" key={index}>
-                  {file.name}
-                </div>
-              ))}
-            </div>
-          )}
-        </div>
+        {/* SHOW FILE LIST AFTER UPLOAD */}
+        {files.length > 0 && (
+          <div className="file-list">
+            {files.map((file, index) => (
+              <div className="file-item" key={index}>
+                {file.name}
+              </div>
+            ))}
+          </div>
+        )}
+      </div>
 
         <div className="btns"> {/* compare btn is for check too */}
           <button className="compare-btn" onClick={handleUpload}>

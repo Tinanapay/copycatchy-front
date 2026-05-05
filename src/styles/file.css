@@ -27,7 +27,9 @@
   border-radius: 15px;
 
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.339);
+  
 }
+
 .upload-box {
   scroll-behavior: smooth;
 }
@@ -81,6 +83,7 @@
 
   border: none;
   border-radius: 10px;
+  z-index: -1px;
 }
 
 

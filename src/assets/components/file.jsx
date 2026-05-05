@@ -1,10 +1,10 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { handleDrop, handleDragOver, handleFileChange } from "./dragdrop";
+import { handleDrop, handleDragOver, handleFileChange } from "./dragdrop.js";
 
 import "../../styles/file.css";
 import egg from "../../assets/components/egg.svg";
-import book2 from "../../assets/components/book2.png";
+import book2 from "../../assets/components/book2.svg";
 
 import Header from "./header.jsx";
 import Sidebar from "./sidebar.jsx";
@@ -49,28 +49,30 @@ return (
     />
 
     <div className="file-container">
+
       <div className="upload-box">
-        <h1 className="meow">Similarity Detection</h1>
-        <h2 className="title">Upload Student Submissions</h2>
+        <h1 className="title">Similarity Detection</h1>
+        
 
-        <div
-          className="drop-area"
-          onDrop={(e) => handleDrop(e, setFiles)}
-          onDragOver={handleDragOver}
-        >
-          <p>Drop files here or click to choose files</p>
+        {/* dropping shows if no files yet */}
+        {files.length === 0 && (
+          <div
+            className="drop-area"
+            onDrop={(e) => handleDrop(e, setFiles)}
+            onDragOver={handleDragOver}
+          >
+            <p>Drop files here or click to choose files</p>
 
-          <input
-            type="file"
-            multiple
-            onChange={(e) => {
-              console.log(e.target.files);
-              handleFileChange(e, setFiles);
-            }}
-            className="file-input"
-          />
-        </div>
+            <input
+              type="file"
+              multiple
+              onChange={(e) => handleFileChange(e, setFiles)}
+              className="file-input"
+            />
+          </div>
+        )}
 
+        {/* SHOW FILE LIST AFTER UPLOAD */}
         {files.length > 0 && (
           <div className="file-list">
             {files.map((file, index) => (
@@ -84,7 +86,7 @@ return (
 
       <div className="btns">
         <button className="compare-btn" onClick={handleUpload}>
-          Compare
+          Analyze
         </button>
 
         <button className="cancel-btn" onClick={handleCancel}>

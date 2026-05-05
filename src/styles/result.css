@@ -33,26 +33,79 @@
 
 /* header */
 .table-header {
-  background: #5f5949;
+  background: #ffd000;
   font-weight: bold;
 }
 
 /* rows */
 .table-row {
-  background: rgb(63, 31, 31);
-  border-bottom: 1px solid #eee;
+ display: grid;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
+  padding: 14px;
+
+    background: rgb(255, 255, 255);
+  border-bottom: 1px solid #000000;
+
+   transition: 0.2s ease;
+   overflow: hidden;
+     min-width: 0;
 }
 
 .table-row:nth-child(even) {
-  background: #fafafa;
+   background: #ffefa0;
 }
+
 
 /* hover effect (this makes it feel “real”) */
 .table-row:hover {
-  background: #fff7d1;
+    background: #e2c948;
 }
 
 /* last row clean */
 .table-row:last-child {
   border-bottom: none;
+}
+.table-row span {
+  border-right: 2px solid rgba(0,0,0,0.1);
+
+   min-width: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+
+   display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.table-row span:last-child,
+.table-header span:last-child {
+  border-right: none;
+}
+
+.egg2 {
+  position: absolute;
+  bottom: -40px;
+  left: -40px;
+
+  width: 50%; 
+  height: 50%; 
+z-index: -1; 
+
+  transform: rotate(180deg);
+}.dl-but1{
+  position: absolute;
+  bottom: 50px;
+  right: 8%;
+
+  background: rgb(251, 222, 0);
+  border-radius: 20px;
+  padding: 8px 16px;
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+}
+
+.dl-but1:hover{
+
+  background: rgb(251, 109, 0);
 }
