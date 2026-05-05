@@ -39,7 +39,7 @@ function Result() {
     
       <div className="result-table">
 
-        <button className= "dl-but1"> download</button>
+        <button className= "dl-but1"> Download</button>
    
        <div className="table-header">
           <span>File Name</span>

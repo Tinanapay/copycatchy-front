@@ -41,7 +41,7 @@ function Grammar() {
 
       <div className="file-container">
         <div className="upload-box">
-          <h1 className="Title">Grammar checker</h1>
+          <h1 className="title2">Grammar checker</h1>
 
 
           {/* dropping shows if no files yet */}
@@ -75,11 +75,11 @@ function Grammar() {
       </div>
 
         <div className="btns"> {/* compare btn is for check too */}
-          <button className="compare-btn" onClick={handleUpload}>
+          <button className="compare-btn1" onClick={handleUpload}>
            Check
           </button>
 
-          <button className="cancel-btn" onClick={handleCancel}>
+          <button className="cancel-btn1" onClick={handleCancel}>
             Cancel
           </button>
         </div>

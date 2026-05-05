@@ -3,7 +3,7 @@
 .result-layout2 {
   display: flex;
   gap: 20px;
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
   min-height: 80vh;
   align-items: stretch;
@@ -71,7 +71,7 @@
   top: 0;
   z-index: 1;
 
-  background: #ffd000;
+  background: #FFC727;;
   font-weight: bold;
 }
 
@@ -100,7 +100,7 @@
   display: grid;
   grid-template-columns: 2fr 1fr 2fr 1fr;
   padding: 14px;
-    border-bottom: 1px solid #000000;
+
   
   background: rgb(255, 255, 255);
 
@@ -129,7 +129,7 @@
   top: 0;
   z-index: 10;
 
-  background: #ffd000;
+  background: #FFC727;;
   font-weight: bold;
   text-align: center;
 
@@ -148,7 +148,7 @@ display: flex;
   top: 0;
   z-index: 10;
 
-  background: #ffd000;
+  background: #FFC727;;
   font-weight: bold;
   align-items: center;
   
@@ -171,9 +171,13 @@ display: flex;
 /* TITLE */
 
 .title2 {
+   background-color: #fbd988;
   color: #000;
-  padding: 20px;
-  margin-bottom: 10px;
+  border-radius: 10px;
+  height: 60px;
+  padding: 30px;
+  margin-bottom: 20px;
+  content: center;
 }
 
 .egg2 {

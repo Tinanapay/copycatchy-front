@@ -5,15 +5,35 @@ import File from "./file.jsx";
 function Sidebar({ isOpen, closeSidebar }) {
   const navigate = useNavigate();
 
-  return (
-    <div className={`sidebar ${isOpen ? "open" : ""}`}>
-      
-      <div className="sidebar-header">
-        <button className="closed-btn" onClick={closeSidebar}>
-          ⇐
-        </button>
-      </div>
+ {/* for test */}
+   const user = {
+    name: "Hello",
+    role: "Welcome to Copycatch",
+  };
 
+
+  return (
+
+    
+    <div className={`sidebar ${isOpen ? "open" : ""}`}>
+
+      <div className="sidebar-header">
+     
+
+       {/* 👤 PROFILE SECTION */}
+      <div className="sidebar-profile">
+        <div className="avatar-circle">
+          {user.name.charAt(0)}
+        </div>
+          <div className="profile-info">
+          <p className="profile-name">{user.name}</p>
+          <p className="profile-role">{user.role}</p>
+        </div>
+      </div>
+      
+      </div>
+  
+      <button className="closed-btn" onClick={closeSidebar}>≡</button>
       <div className="sidebar-nav">
         <button className="file-btn" onClick={() => navigate("/File")}>
           Similarity Detection
@@ -27,8 +47,8 @@ function Sidebar({ isOpen, closeSidebar }) {
           Grammar Checker
         </button>
 
-        <button className="rep-btn" onClick={() => navigate("/reports")}>
-          Report
+        <button className="rep-btn" onClick={() => navigate("/grading")}>
+         Automated Grading
         </button>
       </div>
 

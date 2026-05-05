@@ -85,11 +85,11 @@ return (
       </div>
 
       <div className="btns">
-        <button className="compare-btn" onClick={handleUpload}>
+        <button className="compare-btn1" onClick={handleUpload}>
           Analyze
         </button>
 
-        <button className="cancel-btn" onClick={handleCancel}>
+        <button className="cancel-btn1" onClick={handleCancel}>
           Cancel
         </button>
       </div> 

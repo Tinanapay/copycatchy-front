@@ -1,5 +1,5 @@
 .result-table {
-  width: 90%;
+  width: 100%;
   margin: 20px auto;
   background: rgb(236, 136, 136);
   border-radius: 10px;
@@ -8,7 +8,7 @@
 
   
   overflow-y: auto;  
-  max-height: 400px; 
+  max-height: 550px; 
 
 }
 
@@ -33,7 +33,17 @@
 
 /* header */
 .table-header {
-  background: #ffd000;
+ display: grid;
+  grid-template-columns: 2fr 1fr 2fr 1fr;
+  padding: 14px;
+  text-align: center;
+  align-items: center;
+
+  position: sticky;
+  top: 0;
+  z-index: 1;
+
+  background: #FFC727;;
   font-weight: bold;
 }
 
@@ -44,8 +54,6 @@
   padding: 14px;
 
     background: rgb(255, 255, 255);
-  border-bottom: 1px solid #000000;
-
    transition: 0.2s ease;
    overflow: hidden;
      min-width: 0;
@@ -93,12 +101,13 @@
 z-index: -1; 
 
   transform: rotate(180deg);
-}.dl-but1{
+}
+.dl-but1{
   position: absolute;
   bottom: 50px;
-  right: 8%;
+  left: 90%;
 
-  background: rgb(251, 222, 0);
+  background: rgb(54, 227, 74);
   border-radius: 20px;
   padding: 8px 16px;
   border: 1px solid rgb(0, 0, 0);
@@ -107,5 +116,5 @@ z-index: -1;
 
 .dl-but1:hover{
 
-  background: rgb(251, 109, 0);
+  background: rgb(251, 234, 0);
 }

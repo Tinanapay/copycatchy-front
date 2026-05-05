@@ -20,7 +20,7 @@ body {
   padding: 50px;
   width: 300px;
   border-radius: 10px;
-  height: 300px;
+  height: 250px;
 
   margin-top: 100px;     /* top space */
   margin-bottom: 50px;  /* bottom space */
@@ -52,7 +52,7 @@ input {
   padding: 10px;
   padding: 8px;  
   color: #000000;
-  background-color: #FFC727;
+  background-color: #FFC727;;
   border-radius: 10px;
   left: 50%;
   transform: translateX(45%);
@@ -103,4 +103,20 @@ z-index: -1;
   width: 170%;
   height: 140%;
   z-index: -1;
+}
+
+.input-wrapper {
+  position: relative;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-left: 35px;
+}
+
+.input-wrapper .icon {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  transform: translateY(-50%);
 }

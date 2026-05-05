@@ -17,8 +17,8 @@ function Logins() {
         <div className="hugs">
           <h1 className="helo">Welcome!</h1>
 
-          <input type="text" placeholder="Username" />
-          <input type="password" placeholder="Password" />
+          <input type="text" placeholder=" 👤 Username" />
+          <input type="password" placeholder=" 🔒 Password" />
 
           <button className="login-btn" type="submit">
             LOGIN

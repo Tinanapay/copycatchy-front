@@ -8,6 +8,7 @@ import Spelling from "./pages/spelling.jsx";
 import Grammar from "./pages/grammar.jsx";
 import SpellingResult from "./assets/components/spellingresult.jsx";
 import GrammarResult from "./assets/components/grammarresult.jsx";
+import Grading from "./pages/grading.jsx";
 
 function App() {
   return (
@@ -19,7 +20,7 @@ function App() {
       <Route path="/spellingresult" element={<SpellingResult />} />
       <Route path="/grammar" element={<Grammar />} />
       <Route path="/grammarresult" element={<GrammarResult />} />
-      <Route path="/reports" element={<Result />} />
+      <Route path="/grading" element={<Grading />} />
       <Route path="/result" element={<Result />} />
     </Routes>
   );

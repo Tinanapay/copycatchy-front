@@ -40,7 +40,7 @@
 /* rows */
 .table-row {
   background: rgb(63, 31, 31);
-  border-bottom: 1px solid #eee;
+
 }
 
 .table-row:nth-child(even) {

@@ -23,7 +23,7 @@
   gap: 10px;
   overflow-y: auto;    /* 👈 scroll ONLY inside box */
  
-  background-color: #FFC727;
+  background-color: #FFC727;;
   border-radius: 15px;
 
   box-shadow: 10px 10px 5px rgba(0, 0, 0, 0.339);
@@ -70,20 +70,6 @@
   margin-top: 0px;
   z-index: 10;
   position: relative;
-}
-
-.compare-btn,
-.cancel-btn {
-  width: 100%;
-  padding: 12px;
-
-  color: #000;
-  font-size: 15px;
-  cursor: pointer;
-
-  border: none;
-  border-radius: 10px;
-  z-index: -1px;
 }
 
 

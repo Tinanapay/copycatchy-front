@@ -42,7 +42,7 @@ function Spelling() {
       <div className="file-container">
        
         <div className="upload-box">
-         <h1 className="title">Spelling checker</h1>
+         <h1 className="title1">Spelling checker</h1>
         
         
           {/* dropping shows if no files yet */}

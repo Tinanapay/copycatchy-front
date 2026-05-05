@@ -10,7 +10,7 @@ import learn from "../assets/components/learn.svg";
 
 import File from "../assets/components/file.jsx";
 import Spelling from "../pages/spelling.jsx";
-
+import Grading from "../pages/grading.jsx";
 function Homepage ({ setPage }) {
   const [isSidebarOpen,setIsSidebarOpen] = useState(false);
   const navigate = useNavigate();
@@ -24,7 +24,8 @@ function Homepage ({ setPage }) {
             closeSidebar={() => setIsSidebarOpen(false)} />
 
   <div className= " home-cont">
-    <h1 className= "heelo">Hello!</h1>
+    <h3>Hello!, What do u want bruh
+    </h3>
 
   <div className="btnss">
           <button
@@ -45,8 +46,7 @@ function Homepage ({ setPage }) {
           
           <button className="btn4"
             type="button"
-           onClick={() => navigate("/result")}>
-            result</button>
+           onClick={() => navigate("/grading")}>Automated Grading</button>
    
     </div>
         <img className="egg2" src={egg} alt="Egg" />
