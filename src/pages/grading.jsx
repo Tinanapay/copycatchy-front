@@ -16,14 +16,40 @@ function Grading() {
   const [files, setFiles] = useState([]);
   const [results, setResults] = useState([]);
 
-  // fixed grading system (100%)
-  const weights = {
+  // ✅ WEIGHT SYSTEM
+  const [mode, setMode] = useState("standard");
+
+  const [weights, setWeights] = useState({
     grammar: 30,
     spelling: 25,
     structure: 25,
     clarity: 20,
+  });
+
+  const presets = {
+    standard: { grammar: 30, spelling: 25, structure: 25, clarity: 20 },
+    grammar: { grammar: 40, spelling: 30, structure: 20, clarity: 10 },
+    balanced: { grammar: 25, spelling: 25, structure: 25, clarity: 25 },
   };
 
+  const handlePreset = (value) => {
+    setMode(value);
+
+    if (value !== "custom") {
+      setWeights(presets[value]);
+    }
+  };
+
+  const handleInputChange = (key, value) => {
+    setWeights((prev) => ({
+      ...prev,
+      [key]: Number(value),
+    }));
+  };
+
+  const total = Object.values(weights).reduce((a, b) => a + b, 0);
+
+  // ✅ ANALYZE
   const handleAnalyze = () => {
     const fake = files.map((file) => ({
       name: file.name,
@@ -39,20 +65,6 @@ function Grading() {
     setFiles([]);
     setResults([]);
   };
-
-const toggleWeight = (key) => {
-  setSelectedWeights((prev) => ({
-    ...prev,
-    [key]: !prev[key],
-  }));
-};
-
-const [selectedWeights, setSelectedWeights] = useState({
-  grammar: false,
-  spelling: false,
-  structure: false,
-  clarity: false,
-});
 
   return (
     <div className="homepage-container">
@@ -72,62 +84,128 @@ const [selectedWeights, setSelectedWeights] = useState({
           <div className="top-bar">
             <h1 className="title11">Automated Grading</h1>
 
-        <div className="top-bar">
-            <button className="compare-btn1" onClick={handleAnalyze}>
-              Check
-            </button>
-             {/* CANCEL */}
-          <button className="cancel-btn1" onClick={handleCancel}>
-            Cancel
-          </button>
+            <div className="top-bar">
+              <button className="compare-btn1" onClick={handleAnalyze}>
+                Check
+              </button>
+
+              <button className="cancel-btn1" onClick={handleCancel}>
+                Cancel
+              </button>
+            </div>
           </div>
+
+          {/* ✅ NEW WEIGHT SYSTEM */}
+          <div className="weight-box">
+
+          <div className="weight-header">
+          <h2>Grading Weights</h2>
+          <p>Choose a preset or customize</p>
           </div>
 
-          {/* WEIGHTS */}
+            {/* DROPDOWN */}
+            <select
+              className="preset-select"
+              value={mode}
+              onChange={(e) => handlePreset(e.target.value)}
+            >
+              <option value="standard">Standard 
+                (Grammar: 40%,
+                ,Spelling: 30%,
+                ,Structure: 20%,
+                ,Clarity: 10%)
+              </option>
 
-<div className="weight-buttons">
+              <option value="grammar">Grammar Focus 
+                (Grammar: 40%
+                ,Spelling: 30%
+                ,Structure: 20%
+                ,Clarity: 10%)
+              </option>
+              
+              <option value="balanced">Balanced
+                (Grammar: 25%
+                ,Spelling: 25%
+                ,Structure: 25%
+                ,Clarity: 25%)
+              </option>
 
-   <h2>Grading Weights</h2>
-                 <h4>Totals are added for the final</h4>
-  <button
-    className={`weight-btn ${selectedWeights.grammar ? "active" : ""}`}
-    onClick={() => toggleWeight("grammar")}
-  >
-    Grammar 20%
-  </button>
+              <option value="custom">Custom</option>
+            </select>
 
-  <button
-    className={`weight-btn ${selectedWeights.spelling ? "active" : ""}`}
-    onClick={() => toggleWeight("spelling")}
-  >
-    Spelling 15%
-  </button>
+            {/* CUSTOM INPUTS */}
+            {mode === "custom" && (
+              <div className="weight-inputs">
 
-  <button
-    className={`weight-btn ${selectedWeights.structure ? "active" : ""}`}
-    onClick={() => toggleWeight("structure")}
-  >
-    Structure 15%
-  </button>
+                <div className="input-row">
+                  <span>Grammar</span>
+                  <input
+                    type="number"
+                    value={weights.grammar}
+                    onChange={(e) =>
+                      handleInputChange("grammar", e.target.value)
+                    }
+                  />
+                </div>
 
-  <button
-    className={`weight-btn ${selectedWeights.clarity ? "active" : ""}`}
-    onClick={() => toggleWeight("clarity")}
-  >
-    Clarity 20%
-  </button>
-</div>
+                <div className="input-row">
+                  <span>Spelling</span>
+                  <input
+                    type="number"
+                    value={weights.spelling}
+                    onChange={(e) =>
+                      handleInputChange("spelling", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="input-row">
+                  <span>Structure</span>
+                  <input
+                    type="number"
+                    value={weights.structure}
+                    onChange={(e) =>
+                      handleInputChange("structure", e.target.value)
+                    }
+                  />
+                </div>
+
+                <div className="input-row">
+                  <span>Clarity</span>
+                  <input
+                    type="number"
+                    value={weights.clarity}
+                    onChange={(e) =>
+                      handleInputChange("clarity", e.target.value)
+                    }
+                  />
+                </div>
+
+              </div>
+            )}
+
+            {/* TOTAL */}
+            <p className={`total ${total !== 100 ? "error" : ""}`}>
+              Total: {total}%
+            </p>
+
+          </div>
+
           {/* UPLOAD */}
           <div className="upload-box1">
-            <h1>Files</h1>
-            
+           
+           <div className="weight-header">
+           <h1>Files</h1>
+           <p>Drop files here or click to choose</p>
+           </div>
+
             {files.length === 0 && (
               <div
                 className="drop-area"
                 onDrop={(e) => handleDrop(e, setFiles)}
                 onDragOver={handleDragOver}
               >
-                <p>Drop files here or click to choose</p>
+          
 
                 <input
                   type="file"
@@ -149,7 +227,6 @@ const [selectedWeights, setSelectedWeights] = useState({
             )}
           </div>
 
-         
         </div>
 
         {/* RIGHT SIDE */}
@@ -177,8 +254,8 @@ const [selectedWeights, setSelectedWeights] = useState({
         </div>
 
       </div>
-      <button className= "dl-but11"> download</button>
-      <img className="egg2" src={egg} alt="egg" />
+
+      <button className="dl-but11">download</button>
     </div>
   );
 }
