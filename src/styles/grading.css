@@ -134,6 +134,17 @@
 
 }
 
+
+.table-header1,
+.table-row1 {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr 1fr 1fr;
+  /* File name wider, others equal */
+  align-items: center;
+  padding: 10px;
+  gap: 10px;
+}
+
 .total.error {
   color: red;
 }
@@ -177,7 +188,7 @@
 
 /* DOWNLOAD BUTTON */
 
-
+/* im gloabal*/
 .dl-but11 {
   position: fixed; /* 👈 FIXED (no more weird drifting) */
   bottom: 20px;
@@ -192,5 +203,34 @@
 }
 
 .dl-but11:hover {
+  background: rgb(251, 109, 0);
+}
+
+.egg12 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  width: 50%; 
+  height: 60%; 
+  z-index: -1;
+  
+}
+
+/* im new */
+.dl-buto{
+  position: fixed; 
+  bottom: 20px;
+  right: 20px;
+
+  background: rgb(251, 222, 0);
+  border-radius: 20px;
+  padding: 10px 16px;
+  border: 1px solid rgb(0, 0, 0);
+  cursor: pointer;
+  z-index: 10;
+}
+
+.dl-buto:hover {
   background: rgb(251, 109, 0);
 }

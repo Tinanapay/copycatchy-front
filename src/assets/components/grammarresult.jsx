@@ -8,6 +8,8 @@ import { useState } from "react";
 
 function GrammarResult() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);
+
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -17,12 +19,27 @@ function GrammarResult() {
     return (
       <div>
         <h2>No results found</h2>
-        <button onClick={() => navigate("/")}>
-          Go Back
-        </button>
+        <button onClick={() => navigate("/")}>Go Back</button>
       </div>
     );
   }
+
+  // ✅ download handler
+  const handleDownload = () => {
+    const blob = new Blob(
+      [JSON.stringify(resultData, null, 2)],
+      { type: "application/json" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "grammar-results.json";
+    a.click();
+    URL.revokeObjectURL(url);
+
+    setShowConfirm(false);
+  };
 
   return (
     <div className="file-container2">
@@ -34,16 +51,47 @@ function GrammarResult() {
         closeSidebar={() => setIsSidebarOpen(false)}
       />
 
+      {/* // im the new thingy for download*/}
+      {showConfirm && (
+        <div className="loading-overlay">
+          <div className="loading-content">
+            <h2>Download file?</h2>
+            <p>This will save your grammar results.</p>
+
+            <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+              <button
+                className="compare-btn1"
+                onClick={handleDownload}
+              >
+                Download
+              </button>
+
+              <button
+                className="cancel-btn1"
+                onClick={() => setShowConfirm(false)}
+              >
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+
       <div className="result-layout2">
 
         {/* LEFT SIDE */}
         <div className="table-wrapper2">
-        
-            <button className="dl-but">Download</button>
-         
+           
+         {/* // im the new thingy for download*/}
+          <button
+            className="dl-but"
+            onClick={() => setShowConfirm(true)}
+          >
+            Download
+          </button>
+
           <div className="result-table2">
 
-            {/* left table header */}
             <div className="table-header2">
               <span>File Name</span>
               <span>Grammar Mistakes</span>
@@ -51,27 +99,15 @@ function GrammarResult() {
               <span>Grammar Score</span>
             </div>
 
-            {/* rows */}
             {resultData.files.map((file, index) => (
               <div className="table-row2" key={index}>
                 <span>{file.name}</span>
-
-                {/* fake grammar mistakes */}
-                <span>
-                  {Math.floor(Math.random() * 20) + 1}
-                </span>
-
-                {/* fake total words */}
-                <span>
-                  {Math.floor(Math.random() * 500) + 200}
-                </span>
-
-                {/* fake grammar score */}
-                <span>
-                  {Math.floor(Math.random() * 30) + 70}%
-                </span>
+                <span>{Math.floor(Math.random() * 20) + 1}</span>
+                <span>{Math.floor(Math.random() * 500) + 200}</span>
+                <span>{Math.floor(Math.random() * 30) + 70}%</span>
               </div>
             ))}
+
           </div>
         </div>
 
@@ -87,13 +123,10 @@ function GrammarResult() {
           </div>
 
         </div>
+
       </div>
 
-      <img
-        className="egg2"
-        src={egg}
-        alt="Egg"
-      />
+      <img className="egg1" src={egg} alt="Egg" />
     </div>
   );
 }

@@ -12,6 +12,11 @@ function Sidebar({ isOpen, closeSidebar }) {
   };
 
 
+const handleLogout = () => {
+  localStorage.clear();
+  window.location.href = "/";
+};
+
   return (
 
     
@@ -53,7 +58,9 @@ function Sidebar({ isOpen, closeSidebar }) {
       </div>
 
       <div className="logout-sidebar">
-        <button className="logout-btn">Logout</button>
+     <button className="logout-btn" onClick={handleLogout}>
+      Logout
+    </button>
       </div>
 
     </div>

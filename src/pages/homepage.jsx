@@ -24,7 +24,7 @@ function Homepage ({ setPage }) {
             closeSidebar={() => setIsSidebarOpen(false)} />
 
   <div className= " home-cont">
-    <h3>Hello!, What do u want bruh
+    <h3>Hello! Where do we start?
     </h3>
 
   <div className="btnss">
@@ -51,7 +51,7 @@ function Homepage ({ setPage }) {
     </div>
         <img className="egg2" src={egg} alt="Egg" />
         <img className="learn" src={learn} alt="nerd" />   
-
+  <img className="egg11" src={egg} alt="Egg" />
   </div>
     </div>
   );

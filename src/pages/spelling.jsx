@@ -5,7 +5,12 @@ import "../styles/spelling.css";
 import Header from "../assets/components/header.jsx";
 import Sidebar from "../assets/components/sidebar.jsx";
 
-import { handleDrop, handleDragOver, handleFileChange } from "../assets/components/dragdrop"; 
+import {
+  handleDrop,
+  handleDragOver,
+  handleFileChange
+} from "../assets/components/dragdrop";
+
 import egg from "../assets/components/egg.svg";
 import book2 from "../assets/components/book2.svg";
 
@@ -14,16 +19,72 @@ function Spelling() {
   const [files, setFiles] = useState([]);
   const navigate = useNavigate();
 
-  const handleUpload = () => {
-    const fakeResult = {
-      files: files.map((file) => ({
-        name: file.name,
-        mostSimilar: "file10.pdf",
-        similarity: Math.floor(Math.random() * 100),
-      })),
-    };
+  // im the new thingy for loaidnung
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
 
-    navigate("/SpellingResult", { state: fakeResult });
+  // im the new thingy for uploading
+  const handleUploadFiles = async (e) => {
+
+    // im the new thingy for uploading
+    setUploading(true);
+
+    try {
+
+      // fake upload delay
+      await new Promise((resolve) => setTimeout(resolve, 1500));
+
+      handleFileChange(e, setFiles);
+
+    } catch (error) {
+
+      // im the new thingy for uploading
+      console.log(error);
+
+    } finally {
+
+      // im the new thingy for uploading
+      setUploading(false);
+    }
+  };
+
+  const handleUpload = async () => {
+
+    // im the new thingy for loaidnung
+    if (files.length === 0) {
+      alert("No files selected");
+      return;
+    }
+
+    // im the new thingy for loaidnung
+    setLoading(true);
+
+    try {
+
+      // fake delay for demo/testing
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const fakeResult = {
+        files: files.map((file) => ({
+          name: file.name,
+          mostSimilar: "file10.pdf",
+          similarity: Math.floor(Math.random() * 100),
+        })),
+      };
+
+      navigate("/SpellingResult", { state: fakeResult });
+
+    } catch (error) {
+
+      // im the new thingy for loaidnung
+      console.log(error);
+      alert("Upload failed");
+
+    } finally {
+
+      // im the new thingy for loaidnung
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -32,6 +93,18 @@ function Spelling() {
 
   return (
     <div className="homepage-container">
+
+      {/* im the new thingy for loaidnung */}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-content">
+            <div className="spinner"></div>
+            <h2>Hold on...</h2>
+            <p>Checking spelling</p>
+          </div>
+        </div>
+      )}
+
       <Header toggleSidebar={() => setIsSidebarOpen(true)} />
 
       <Sidebar
@@ -40,47 +113,75 @@ function Spelling() {
       />
 
       <div className="file-container">
-       
+
         <div className="upload-box">
-         <h1 className="title1">Spelling checker</h1>
-        
-        
+          <h1 className="title1">Spelling checker</h1>
+
           {/* dropping shows if no files yet */}
-        {files.length === 0 && (
-          <div
-            className="drop-area"
-            onDrop={(e) => handleDrop(e, setFiles)}
-            onDragOver={handleDragOver}
+          {files.length === 0 && (
+            <div
+              className="drop-area"
+              onDrop={(e) => handleDrop(e, setFiles)}
+              onDragOver={handleDragOver}
+            >
+              <p>Click to choose files what to upload!</p>
+
+              <input
+                type="file"
+                multiple
+
+                // im the new thingy for uploading
+                onChange={handleUploadFiles}
+
+                className="file-input"
+
+                // im the new thingy for loaidnung
+                disabled={loading || uploading}
+              />
+
+              {/* im the new thingy for uploading */}
+              {uploading && (
+                <div className="uploading-text">
+                  <div className="small-spinner"></div>
+                  <p>Uploading files...</p>
+                </div>
+              )}
+            </div>
+          )}
+
+          {/* SHOW FILE LIST AFTER UPLOAD */}
+          {files.length > 0 && (
+            <div className="file-list">
+              {files.map((file, index) => (
+                <div className="file-item" key={index}>
+                  {file.name}
+                </div>
+              ))}
+            </div>
+          )}
+        </div>
+
+        <div className="btns">
+
+          {/* compare btn is for check too */}
+          <button
+            className="compare-btn1"
+            onClick={handleUpload}
+
+            // im the new thingy for loaidnung
+            disabled={loading || uploading}
           >
-            <p>Drop files here or click to choose files</p>
-
-            <input
-              type="file"
-              multiple
-              onChange={(e) => handleFileChange(e, setFiles)}
-              className="file-input"
-            />
-          </div>
-        )}
-
-        {/* SHOW FILE LIST AFTER UPLOAD */}
-        {files.length > 0 && (
-          <div className="file-list">
-            {files.map((file, index) => (
-              <div className="file-item" key={index}>
-                {file.name}
-              </div>
-            ))}
-          </div>
-        )}
-      </div>
-
-        <div className="btns"> {/* compare btn is for check too */}
-          <button className="compare-btn1" onClick={handleUpload}>
-           Check
+            {/* im the new thingy for loaidnung */}
+            {loading ? "Checking..." : "Check"}
           </button>
 
-          <button className="cancel-btn1" onClick={handleCancel}>
+          <button
+            className="cancel-btn1"
+            onClick={handleCancel}
+
+            // im the new thingy for loaidnung
+            disabled={loading || uploading}
+          >
             Cancel
           </button>
         </div>

@@ -16,6 +16,11 @@ function Grading() {
   const [files, setFiles] = useState([]);
   const [results, setResults] = useState([]);
 
+  // im the new thingy for loaidnung
+  const [loading, setLoading] = useState(false);
+  const [uploading, setUploading] = useState(false);
+  const [showConfirm, setShowConfirm] = useState(false);//im for download
+
   // ✅ WEIGHT SYSTEM
   const [mode, setMode] = useState("standard");
 
@@ -49,16 +54,82 @@ function Grading() {
 
   const total = Object.values(weights).reduce((a, b) => a + b, 0);
 
-  // ✅ ANALYZE
-  const handleAnalyze = () => {
-    const fake = files.map((file) => ({
-      name: file.name,
-      mistakes: Math.floor(Math.random() * 20),
-      total: Math.floor(Math.random() * 500) + 200,
-      score: Math.floor(Math.random() * 30) + 70,
-    }));
+// im the new thingy for uploading
+const handleUploadFiles = async (e) => {
 
-    setResults(fake);
+  // im the new thingy for uploading
+  setUploading(true);
+
+  try {
+
+    // fake upload delay
+    await new Promise((resolve) => setTimeout(resolve, 1500));
+
+    handleFileChange(e, setFiles);
+
+  } catch (error) {
+
+    // im the new thingy for uploading
+    console.log(error);
+
+  } finally {
+
+    // im the new thingy for uploading
+    setUploading(false);
+  }
+};
+
+
+  // ✅ ANALYZE
+  const handleAnalyze = async () => {
+
+    // im the new thingy for loaidnung
+    if (files.length === 0) {
+      alert("No files selected");
+      return;
+    }
+
+    // im the new thingy for loaidnung
+    setLoading(true);
+
+    try {
+
+      // im the new thingy for loaidnung
+      // fake delay for demo/testing
+      await new Promise((resolve) => setTimeout(resolve, 3000));
+
+      const fake = files.map((file) => ({
+        name: file.name,
+
+        // im the new thingy for loaidnung
+        grammar: Math.floor(Math.random() * 30) + 70,
+
+        // im the new thingy for loaidnung
+        spelling: Math.floor(Math.random() * 30) + 70,
+
+        // im the new thingy for loaidnung
+        originality: Math.floor(Math.random() * 30) + 70,
+
+        // im the new thingy for loaidnung
+        totalWords: Math.floor(Math.random() * 500) + 200,
+
+        // im the new thingy for loaidnung
+        final: Math.floor(Math.random() * 30) + 70,
+      }));
+
+      setResults(fake);
+
+    } catch (error) {
+
+      // im the new thingy for loaidnung
+      console.log(error);
+      alert("Analysis failed");
+
+    } finally {
+
+      // im the new thingy for loaidnung
+      setLoading(false);
+    }
   };
 
   const handleCancel = () => {
@@ -66,8 +137,36 @@ function Grading() {
     setResults([]);
   };
 
+    // im the new thingy for downlaod
+  const handleDownload = () => {
+  const blob = new Blob(
+    [JSON.stringify(results, null, 2)],
+    { type: "application/json" }
+  );
+
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement("a");
+  a.href = url;
+  a.download = "grading-results.json";
+  a.click();
+  URL.revokeObjectURL(url);
+
+  setShowConfirm(false);
+};
   return (
     <div className="homepage-container">
+
+      {/* im the new thingy for loaidnung */}
+      {loading && (
+        <div className="loading-overlay">
+          <div className="loading-content">
+            <div className="spinner"></div>
+            <h2>Hold on...</h2>
+            <p>Analyzing files </p>
+          </div>
+        </div>
+      )}
+
       <Header toggleSidebar={() => setIsSidebarOpen(true)} />
 
       <Sidebar
@@ -85,11 +184,24 @@ function Grading() {
             <h1 className="title11">Automated Grading</h1>
 
             <div className="top-bar">
-              <button className="compare-btn1" onClick={handleAnalyze}>
-                Check
+              <button
+                className="compare-btn1"
+                onClick={handleAnalyze}
+
+                // im the new thingy for loaidnung
+              disabled={loading || uploading}
+              >
+                {/* im the new thingy for loaidnung */}
+                {loading ? "Checking..." : "Check"}
               </button>
 
-              <button className="cancel-btn1" onClick={handleCancel}>
+              <button
+                className="cancel-btn1"
+                onClick={handleCancel}
+
+              // im the new thingy for loaidnung
+              disabled={loading || uploading}
+              >
                 Cancel
               </button>
             </div>
@@ -98,10 +210,10 @@ function Grading() {
           {/* ✅ NEW WEIGHT SYSTEM */}
           <div className="weight-box">
 
-          <div className="weight-header">
-          <h2>Grading Weights</h2>
-          <p>Choose a preset or customize</p>
-          </div>
+            <div className="weight-header">
+              <h2>Grading Weights</h2>
+              <p>Choose a preset or customize</p>
+            </div>
 
             {/* DROPDOWN */}
             <select
@@ -109,21 +221,24 @@ function Grading() {
               value={mode}
               onChange={(e) => handlePreset(e.target.value)}
             >
-              <option value="standard">Standard 
+              <option value="standard">
+                Standard
                 (Grammar: 40%,
                 ,Spelling: 30%,
                 ,Structure: 20%,
                 ,Clarity: 10%)
               </option>
 
-              <option value="grammar">Grammar Focus 
+              <option value="grammar">
+                Grammar Focus
                 (Grammar: 40%
                 ,Spelling: 30%
                 ,Structure: 20%
                 ,Clarity: 10%)
               </option>
-              
-              <option value="balanced">Balanced
+
+              <option value="balanced">
+                Balanced
                 (Grammar: 25%
                 ,Spelling: 25%
                 ,Structure: 25%
@@ -193,11 +308,11 @@ function Grading() {
 
           {/* UPLOAD */}
           <div className="upload-box1">
-           
-           <div className="weight-header">
-           <h1>Files</h1>
-           <p>Drop files here or click to choose</p>
-           </div>
+
+            <div className="weight-header">
+              <h1>Files</h1>
+              <p>Click to choose files what to upload!</p>
+            </div>
 
             {files.length === 0 && (
               <div
@@ -205,16 +320,26 @@ function Grading() {
                 onDrop={(e) => handleDrop(e, setFiles)}
                 onDragOver={handleDragOver}
               >
-          
 
                 <input
                   type="file"
                   multiple
-                  onChange={(e) => handleFileChange(e, setFiles)}
+                 // im the new thingy for uploading   
+                 onChange={handleUploadFiles}
                   className="file-input"
                 />
+
+                {/* im the new thingy for uploading */}
+                {uploading && (
+                  <div className="uploading-text">
+                    <div className="small-spinner"></div>
+                    <p>Uploading files...</p>
+                  </div>
+                )}
               </div>
             )}
+
+
 
             {files.length > 0 && (
               <div className="file-list">
@@ -229,24 +354,29 @@ function Grading() {
 
         </div>
 
-        {/* RIGHT SIDE */}
+        {/* RIGHT */}
         <div className="grading-right">
-
           <div className="result-table1">
 
+            {/* HEADER */}
             <div className="table-header1">
               <span>File Name</span>
-              <span>Mistakes</span>
+              <span>Grammar</span>
+              <span>Spelling</span>
+              <span>Originality</span>
               <span>Total Words</span>
-              <span>Score</span>
+              <span>Final Grade</span>
             </div>
 
+            {/* ROWS */}
             {results.map((r, i) => (
               <div className="table-row1" key={i}>
                 <span>{r.name}</span>
-                <span>{r.mistakes}</span>
-                <span>{r.total}</span>
-                <span>{r.score}%</span>
+                <span>{r.grammar}%</span>
+                <span>{r.spelling}%</span>
+                <span>{r.originality}%</span>
+                <span>{r.totalWords}</span>
+                <span>{r.final}%</span>
               </div>
             ))}
 
@@ -255,7 +385,35 @@ function Grading() {
 
       </div>
 
-      <button className="dl-but11">download</button>
+      <button
+        className="dl-buto"
+        onClick={() => setShowConfirm(true)}
+      >
+        Download
+      </button>
+
+      <img className="egg12" src={egg} alt="Egg" />
+      {showConfirm && (
+  <div className="loading-overlay">
+    <div className="loading-content">
+      <h2>Download file?</h2>
+      <p>This will save your grading results.</p>
+
+      <div style={{ display: "flex", gap: "10px", marginTop: "20px" }}>
+        <button className="compare-btn1" onClick={handleDownload}>
+          Download
+        </button>
+
+        <button
+          className="cancel-btn1"
+          onClick={() => setShowConfirm(false)}
+        >
+          Cancel
+        </button>
+      </div>
+    </div>
+  </div>
+)}
     </div>
   );
 }

@@ -43,7 +43,7 @@
 .btn2:hover,
 .btn3:hover,
 .btn4:hover {
-  opacity: 0.9;
+  opacity: 0.5;
 }
 
 
@@ -70,3 +70,13 @@ z-index: -1;
   z-index: -1;
 }
 
+.egg11 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  width: 50%; 
+  height: 60%; 
+  z-index: -10;
+  
+}
