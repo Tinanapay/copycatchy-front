@@ -101,7 +101,8 @@
  
   .hero-tag{
     font-size:clamp(1rem,2.5vw,1.3rem);
-    color:#2c3e50;font-weight:400;
+    color:#2c3e50;
+    font-weight:400;
     max-width: 620px;margin:0 auto 36px;
     line-height:1.6
   }
@@ -180,15 +181,19 @@
     font-weight:800;
     color:#1a1a2e;
     margin-bottom:14px;
-    line-height:1.15
+    line-height:1.15;
   }
 
   .section-sub{
     color:#555;
     font-size:1rem;
     max-width:560px;
-    line-height:1.7
-  }
+    line-height:1.7;
+   
+  max-width: 100%;
+  overflow-wrap: break-word;
+
+}
 
   /* FEATURES */
   #features{
@@ -488,7 +493,8 @@
   .books {
   position: absolute;
   bottom: -155px;
-  left: 700px;
+   left: 50%;
+  transform: translateX(200px);
   height: 50%;
   z-index: -1;
 }
@@ -496,13 +502,13 @@
 .books2{
   height: 30%;
   position: absolute;
-  right: 680px;
-  bottom: -175%;
+  right: 800px;
+  bottom: -150%;
 }
 .books3{
   height: 30%;
   position: absolute;
-  right: -20px;
+  right: -50px;
   z-index: 1;
-bottom: -257%;
+  bottom: -217%;
 }
